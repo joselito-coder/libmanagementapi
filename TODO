@@ -1,0 +1,9 @@
+# Tasks to do
+Build a rest api for library management system
+
+create 2 schemas Book and author
+link these schemas together ( Using ref: in the model [The process is known as populate can be found : https://mongoosejs.com/docs/populate.html])
+
+authentication using tokens
+
+Authorization 
