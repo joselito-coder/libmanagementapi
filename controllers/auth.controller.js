@@ -81,9 +81,14 @@ const test = async (req, res) => {
     // res.json({ info: "YOU data is sekret" });
 }
 
+const usage = (req,res)=>{
+    res.send("Please POST /login for login \nand POST /register To register ");
+}
+
 
 module.exports = {
     login,
     register,
-    test
+    test,
+    usage,
 }

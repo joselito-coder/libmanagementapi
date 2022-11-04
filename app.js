@@ -17,12 +17,12 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/books', books);
-app.use('/api/v1/authors',authors);
-app.use('/api/v1/auth',auth);
+app.use('/api/v1/authors', authors);
+app.use('/api/v1/auth', auth);
 
 
 app.get("/", (req, res) => {
-  res.send("Please use /api/v1/books for books\n And /api/v1/author for authors");
+  res.send("Please use /api/v1/books for books\n And /api/v1/author for authors \n Use /api/v1/auth for Authentication");
 });
 
 
