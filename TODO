@@ -6,7 +6,7 @@ Build a rest api for library management system
 * authentication using tokens
 * Authorization 
 
-Security using helmet js
+* Security using helmet js
 
 Schema validation using joi and middlewares
 
