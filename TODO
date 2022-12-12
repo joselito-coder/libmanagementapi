@@ -6,9 +6,10 @@ Build a rest api for library management system
 * authentication using tokens
 * Authorization 
 
+* Security using helmet js
 
 Schema validation using joi and middlewares
 
-dynamic role checking
+* dynamic role checking
 
 Documentation using postman

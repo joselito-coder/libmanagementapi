@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const { getAllRoles } = require('../roles')
+
+const roles = getAllRoles();
+
 
 const AuthSchema = mongoose.Schema({
     username: {
@@ -14,13 +18,13 @@ const AuthSchema = mongoose.Schema({
 
     role: {
         type: String,
-        enum: ['student', 'librarian'],
+        enum: roles,
         default: 'student'
     }
 
 });
 
-AuthSchema.pre('save', async function (next) {
+AuthSchema.pre('save', async function(next) {
 
     const user = this;
 

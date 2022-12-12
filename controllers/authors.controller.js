@@ -1,9 +1,11 @@
 const Author = require('../models/Author.model');
 const jwt = require("jsonwebtoken");
 
+const roles = require('../roles');
+
 
 // Public route
-const getAllAuthors = async (req, res) => {
+const getAllAuthors = async(req, res) => {
 
     try {
         const authors = await Author.find({});
@@ -16,7 +18,7 @@ const getAllAuthors = async (req, res) => {
 }
 
 // Protected route ( can Only be used by librarian)
-const addAuthor = async (req, res) => {
+const addAuthor = async(req, res) => {
 
     try {
         const { authorization } = req.headers;
@@ -29,7 +31,7 @@ const addAuthor = async (req, res) => {
         const token = authorization.split(" ")[1];
         const { role } = await jwt.decode(token);
 
-        if (role === "librarian") {
+        if (roles.isAdmin(role)) {
             const author = await Author.create(req.body);
             return res.status(201).json({ author });
 
@@ -45,7 +47,7 @@ const addAuthor = async (req, res) => {
 
 
 // Public route
-const getSingleAuthor = async (req, res) => {
+const getSingleAuthor = async(req, res) => {
 
     try {
 
@@ -64,7 +66,7 @@ const getSingleAuthor = async (req, res) => {
 }
 
 // Protected route
-const updateAuthor = async (req, res) => {
+const updateAuthor = async(req, res) => {
     try {
 
         const { authorization } = req.headers;
@@ -75,7 +77,7 @@ const updateAuthor = async (req, res) => {
         const token = authorization.split(" ")[1];
         const { role } = await jwt.decode(token);
 
-        if (role === "librarian") {
+        if (roles.isAdmin(role)) {
 
             const { id } = req.params;
             const author = await Author.findOneAndUpdate({ _id: id }, req.body, { new: true });
@@ -87,14 +89,14 @@ const updateAuthor = async (req, res) => {
 
 
         } else {
-            return res.status(401).json({ error: "Not Authorized to add author, Kindly ask a librarian" });
+            return res.status(401).json({ error: "Not Authorized to add author, Kindly ask a librarian or an admin" });
         }
 
     } catch (error) {
         res.status(500).json({ error: "Please Check The Token Provided" })
     }
 }
-const deleteAuthor = async (req, res) => {
+const deleteAuthor = async(req, res) => {
     try {
 
         const { authorization } = req.headers;
@@ -105,7 +107,7 @@ const deleteAuthor = async (req, res) => {
         const token = authorization.split(" ")[1];
         const { role } = await jwt.decode(token);
 
-        if (role === "librarian") {
+        if (roles.isAdmin(role)) {
 
             const { id } = req.params;
             const author = await Author.findOneAndDelete({ _id: id });
