@@ -8,7 +8,7 @@ Build a rest api for library management system
 
 * Security using helmet js
 
-Schema validation using joi and middlewares
+* Schema validation using joi and middlewares
 
 * dynamic role checking
 
