@@ -5,23 +5,22 @@ const AuthorSchema = mongoose.Schema({
 
     name: {
         type: String,
-        required: [true, "Must provide name" ],
+        required: [true, "Must provide name"],
         trim: true
 
     },
     booksPublished: {
-        type:Number,
-        required: [true , "Must provide number of books published"]
+        type: Number,
+        required: [true, "Must provide number of books published"]
     },
 
     awardsReceived: {
-        type:Number,
-        required: [true , "Must provide number of awards published"]
+        type: Number,
+        required: [true, "Must provide number of awards published"]
     },
-
 
 
 })
 
 
-module.exports = mongoose.model('Author',AuthorSchema);
+module.exports = mongoose.model('Author', AuthorSchema);

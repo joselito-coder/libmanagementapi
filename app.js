@@ -8,6 +8,8 @@ const authors = require('./routes/authors.route');
 const auth = require('./routes/auth.route');
 const connectDb = require('./db/connect');
 const helmet = require('helmet');
+const notFound = require('./middleware/notFound');
+const errorHandlerMiddleware = require('./middleware/errorHandler');
 
 //  port to listen to
 const port = process.env.PORT || 3000;
@@ -23,6 +25,9 @@ app.use(helmet())
 app.use('/api/v1/books', books);
 app.use('/api/v1/authors', authors);
 app.use('/api/v1/auth', auth);
+
+app.use(notFound)
+app.use(errorHandlerMiddleware)
 
 
 app.get("/", (req, res) => {
